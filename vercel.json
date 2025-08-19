@@ -11,7 +11,7 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "https://your-backend-url.com/api",
+    "VITE_API_URL": "https://api-mock-temp.vercel.app/api",
     "VITE_APP_TITLE": "Eu Vi uma Arma - Denuncie",
     "VITE_APP_DESCRIPTION": "Sistema de denúncias anônimas com geolocalização"
   }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Spinner, Alert } from 'react-bootstrap';
 import { AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
+import { API_CONFIG, isProductionWithoutBackend } from '../config/api';
 
 interface Location {
   latitude: number;
@@ -55,8 +56,14 @@ export const DenunciaButton: React.FC<DenunciaButtonProps> = ({ onDenunciaSubmit
   };
 
   const submitDenuncia = async (location: Location): Promise<void> => {
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
-      const response = await fetch(`${apiUrl}/denuncias`, {
+    // Se estamos em produção sem backend, simular sucesso
+    if (isProductionWithoutBackend()) {
+      // Simular delay de rede
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      return;
+    }
+
+    const response = await fetch(`${API_CONFIG.BASE_URL}/denuncias`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

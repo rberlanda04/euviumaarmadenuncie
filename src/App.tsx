@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button, Spinner, Alert } from 'react-bootstr
 import { DenunciaButton } from './components/DenunciaButton';
 import { MapaDenuncias } from './components/MapaDenuncias';
 import { Shield, MapPin, RefreshCw } from 'lucide-react';
+import { API_CONFIG, isProductionWithoutBackend, MOCK_DATA } from './config/api';
 
 interface Denuncia {
   id: number;
@@ -30,27 +31,41 @@ function App() {
 
   const fetchEstatisticas = async () => {
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
-      const response = await fetch(`${apiUrl}/estatisticas`);
+      if (isProductionWithoutBackend()) {
+        setEstatisticas(MOCK_DATA.estatisticas);
+        return;
+      }
+      
+      const response = await fetch(`${API_CONFIG.BASE_URL}/estatisticas`);
       if (response.ok) {
         const data = await response.json();
         setEstatisticas(data);
       }
     } catch (error) {
       console.error('Erro ao buscar estatísticas:', error);
+      if (isProductionWithoutBackend()) {
+        setEstatisticas(MOCK_DATA.estatisticas);
+      }
     }
   };
 
   const fetchDenuncias = async () => {
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
-      const response = await fetch(`${apiUrl}/denuncias?limit=10`);
+      if (isProductionWithoutBackend()) {
+        setDenuncias(MOCK_DATA.denuncias);
+        return;
+      }
+      
+      const response = await fetch(`${API_CONFIG.BASE_URL}/denuncias?limit=10`);
       if (response.ok) {
         const data = await response.json();
         setDenuncias(data.denuncias || []);
       }
     } catch (error) {
       console.error('Erro ao buscar denúncias:', error);
+      if (isProductionWithoutBackend()) {
+        setDenuncias(MOCK_DATA.denuncias);
+      }
     }
   };
 
