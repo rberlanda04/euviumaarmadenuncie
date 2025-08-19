@@ -1,16 +1,19 @@
 {
-  "name": "server",
+  "name": "euviumaarmadenuncie-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend para sistema de denúncias anônimas",
   "main": "index.js",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["denuncias", "api", "express", "sqlite"],
+  "author": "Sistema de Denúncias",
+  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",

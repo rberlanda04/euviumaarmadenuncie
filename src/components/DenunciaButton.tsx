@@ -55,7 +55,8 @@ export const DenunciaButton: React.FC<DenunciaButtonProps> = ({ onDenunciaSubmit
   };
 
   const submitDenuncia = async (location: Location): Promise<void> => {
-    const response = await fetch('http://localhost:3001/api/denuncias', {
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+      const response = await fetch(`${apiUrl}/denuncias`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

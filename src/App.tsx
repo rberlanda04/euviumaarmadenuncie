@@ -30,7 +30,8 @@ function App() {
 
   const fetchEstatisticas = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/estatisticas');
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+      const response = await fetch(`${apiUrl}/estatisticas`);
       if (response.ok) {
         const data = await response.json();
         setEstatisticas(data);
@@ -42,7 +43,8 @@ function App() {
 
   const fetchDenuncias = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/denuncias?limit=10');
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+      const response = await fetch(`${apiUrl}/denuncias?limit=10`);
       if (response.ok) {
         const data = await response.json();
         setDenuncias(data.denuncias || []);
