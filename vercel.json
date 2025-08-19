@@ -11,8 +11,8 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "@vite_api_url",
-    "VITE_APP_TITLE": "@vite_app_title",
-    "VITE_APP_DESCRIPTION": "@vite_app_description"
+    "VITE_API_URL": "https://your-backend-url.com/api",
+    "VITE_APP_TITLE": "Eu Vi uma Arma - Denuncie",
+    "VITE_APP_DESCRIPTION": "Sistema de denúncias anônimas com geolocalização"
   }
 }
